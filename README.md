@@ -1,2 +1,7 @@
-# BillReminder
-An Application to help a user organize his bills and remind him about the payments due. 
+# Client Manager
+An Simple MVC application to Manage Client Details 
+
+
+# Tech 
+* MVC
+* Angular JS
