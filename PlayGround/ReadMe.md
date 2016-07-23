@@ -11,7 +11,7 @@
 ```
 4. Add a file HelloWorld.ts, add the below contents in the file
 ``` typescript
-function HelloWorld(){
+function greetHelloWorld(){
     alert("Hello World");
 }
 ```
@@ -22,7 +22,7 @@ function HelloWorld(){
             <title>Hello World in typescript</title>
         </head>
         <body>
-            <input type="button" onclick="SayHello()" value="Say Hello">
+            <input type="button" onclick="greetHelloWorld()" value="Say Hello">
             <script src="HelloWorld.js"></script>
         </body>
     </html>
