@@ -1,9 +1,4 @@
-# Client Manager
-An Simple MVC application to Manage Client Details 
+# Ad Manager API
 
+API Library developed using Node.js
 
-### Tech 
-- MVC
-- Angular JS
-- EntityFramework 7
-- Bootstrap
