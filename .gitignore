@@ -1,8 +1,7 @@
 node_modules
 .vscode
 typings
-*.js
-*.js.map
+
 
 
 # Logs

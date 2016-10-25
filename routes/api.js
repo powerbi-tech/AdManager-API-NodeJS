@@ -12,7 +12,7 @@ var Publication = require('../models/publication');
 Product.methods(['get','put','post','delete']);
 Product.register(router,'/products');
 
-//Register  Routes
+//Register  Routes for Publication Collection
 Publication.methods(['get','put','post','delete']);
 Publication.register(router,'/publications');
 
