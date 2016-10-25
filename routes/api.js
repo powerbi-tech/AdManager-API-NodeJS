@@ -5,13 +5,16 @@ var router = express.Router();
 
 // Models
 var Product = require('../models/product');
+var Publication = require('../models/publication');
 
 
-
-// Routes
+//Register  Routes
 Product.methods(['get','put','post','delete']);
 Product.register(router,'/products');
 
+//Register  Routes
+Publication.methods(['get','put','post','delete']);
+Publication.register(router,'/publications');
 
 // Return router
 module.exports = router;

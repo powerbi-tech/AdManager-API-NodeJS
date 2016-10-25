@@ -1,0 +1,15 @@
+node_modules
+.vscode
+typings
+*.js
+*.js.map
+
+
+# Logs
+logs
+*.log
+npm-debug.log*
+
+
+#Custom files
+Instructions.md
