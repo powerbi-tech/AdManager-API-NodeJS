@@ -10,6 +10,7 @@ var publicationSchema = new mongoose.Schema({
     LanguagexCD: String,
     CommissionRateForAdvertisments: Number,
     CommisionRateForClassifieds: Number,
+	Ratings:Number
 });
 
 // Return model

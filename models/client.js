@@ -6,9 +6,13 @@ var mongoose = restful.mongoose;
 var clientSchema = new mongoose.Schema({
      IsDeleted: Boolean,
         FirstName: String,
+		MiddleName: String,
         LastName:String,
         Mobile:String,
         Email:String,
+		MobileNumber:String,
+		Address:String,
+		ClientTypexCD:String
 });
 
 // Return model
