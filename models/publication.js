@@ -4,10 +4,10 @@ var mongoose = restful.mongoose;
 
 // Schema for Publication Collection
 var publicationSchema = new mongoose.Schema({
-     IsDeleted: Boolean,
+    IsDeleted: Boolean,
     Name: String,
-    TypexCD: String,
-    LanguagexCD: String,
+    Type: String,
+    Language: String,
     CommissionRateForAdvertisments: Number,
     CommisionRateForClassifieds: Number,
 });
