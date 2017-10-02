@@ -8,9 +8,6 @@ var Product = require('../models/product');
 var Publication = require('../models/publication');
 var Client = require('../models/client');
 
-//Register  Routes
-Product.methods(['get','put','post','delete']);
-Product.register(router,'/products');
 
 //Register  Routes for Publication Collection
 Publication.methods(['get','put','post','delete']);
