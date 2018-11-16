@@ -24,6 +24,10 @@ The above command will contiously watch for any changes in the source files and 
 
 - browse to the url http://localhost:8000/ to view the application endpoints default message.
 
+## API Documentation
+
+The API documentation is published [here](https://documenter.getpostman.com/view/190355/RzZDgvxo). Use Postman to run the api requests on your local server.
+
 ## Guide on building NodJs Enterprise Applications
 
 ## Setting up the environment
