@@ -2,7 +2,7 @@
 
 ## Pre-requisites
 
-- yarn package manager is used in this application to manage the packages. Make sure you have yarn installed globally on your machine.```language
+- **yarn** package manager is used in this application to manage the packages. Make sure you have **yarn** installed globally on your machine.
 
 `npm install yarn -g`
 
