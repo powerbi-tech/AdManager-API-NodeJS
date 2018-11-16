@@ -13,10 +13,10 @@
     "dev": "cross-env NODE_ENV=development nodemon dist/index.bundle.js"
   },
   "devDependencies": {
-    "babel-core": "6.26.3",
+    "babel-core": "6.24.1",
     "babel-loader": "7.0.0",
-    "babel-plugin-transform-object-rest-spread": "6.26.0",
-    "babel-preset-env": "1.7.0",
+    "babel-plugin-transform-object-rest-spread": "6.23.0",
+    "babel-preset-env": "1.4.0",
     "eslint": "5.9.0",
     "eslint-config-strongloop": "2.1.0",
     "morgan": "1.9.1",
