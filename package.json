@@ -1,0 +1,9 @@
+{
+  "name": "ad-manager-api",
+  "version": "0.0.1",
+  "description": "Ad Manager API",
+  "main": "index.js",
+  "repository": "https://github.com/costaivo/AdManager-API-NodeJS.git",
+  "author": "Costa Ivo <costa_ivo@yahoo.com>",
+  "license": "GNU"
+}
