@@ -1,0 +1,7 @@
+{
+    "extends": "strongloop",
+    "rules": {
+      "semi": [2, "never"]
+    }
+  }
+  

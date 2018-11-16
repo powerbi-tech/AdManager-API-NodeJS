@@ -5,5 +5,13 @@
   "main": "index.js",
   "repository": "https://github.com/costaivo/AdManager-API-NodeJS.git",
   "author": "Costa Ivo <costa_ivo@yahoo.com>",
-  "license": "GNU"
+  "license": "GNU",
+  "scripts": {
+    "pretest": "eslint --ignore-path .gitignore ."
+  },
+  "devDependencies": {
+    "eslint": "5.9.0",
+    "eslint-config-strongloop": "2.1.0",
+    "prettier": "1.15.2"
+  }
 }
