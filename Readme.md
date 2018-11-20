@@ -2,7 +2,7 @@
 
 ## Pre-requisites
 
-- **yarn** package manager is used in this application to manage the packages. Make sure you have **yarn** installed globally on your machine.
+- **Yarn** package manager is used in this application to manage the packages. Make sure you have **Yarn** installed globally on your machine.
 
             `npm install yarn -g`
 
@@ -16,7 +16,7 @@
 
 `yarn dev:build`
 
-The above command will contiously watch for any changes in the source files and re-publish the files in dist folder
+The above command will continuously watch for any changes in the source files and re-publish the files in dist folder
 
 - open another terminal window and run the below command to start the node server
 
