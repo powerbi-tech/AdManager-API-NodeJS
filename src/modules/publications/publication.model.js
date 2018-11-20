@@ -2,7 +2,7 @@ import mongoose, { Schema } from 'mongoose'
 import slug from 'slug'
 import uniqueValidator from 'mongoose-unique-validator'
 
-const PublicationSchema = new Schema(
+const PostSchema = new Schema(
   {
     title: {
       type: String,
@@ -34,17 +34,17 @@ const PublicationSchema = new Schema(
   { timestamps: true }
 )
 
-PublicationSchema.plugin(uniqueValidator, {
+PostSchema.plugin(uniqueValidator, {
   message: '{VALUE} already taken!',
 })
 
-PublicationSchema.pre('validate', function(next) {
+PostSchema.pre('validate', function(next) {
   this._slugify()
 
   next()
 })
 
-PublicationSchema.methods = {
+PostSchema.methods = {
   _slugify() {
     this.slug = slug(this.title)
   },
@@ -61,7 +61,7 @@ PublicationSchema.methods = {
   },
 }
 
-PublicationSchema.statics = {
+PostSchema.statics = {
   createPost(args, user) {
     return this.create({
       ...args,
@@ -75,6 +75,14 @@ PublicationSchema.statics = {
       .limit(limit)
       .populate('user')
   },
+
+  incFavoriteCount(postId) {
+    return this.findByIdAndUpdate(postId, { $inc: { favoriteCount: 1 } })
+  },
+
+  decFavoriteCount(postId) {
+    return this.findByIdAndUpdate(postId, { $inc: { favoriteCount: -1 } })
+  },
 }
 
-export default mongoose.model('Publication', PublicationSchema)
+export default mongoose.model('Publication', PostSchema)
