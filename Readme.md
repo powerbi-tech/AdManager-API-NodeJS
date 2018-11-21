@@ -3,25 +3,25 @@
 ## Pre-requisites
 
 - **Yarn** package manager is used in this application to manage the packages. Make sure you have **Yarn** installed globally on your machine.
-
-            `npm install yarn -g`
-
+```
+            npm install yarn -g
+```
 - Install the packages required to run the program using
-
-            `yarn install`
-
+```
+            yarn install
+```
 ## Running the Application
 
 - run the following command in the command line to build the files in dist folder
-
-`yarn dev:build`
-
+```
+        yarn dev:build
+```
 The above command will continuously watch for any changes in the source files and re-publish the files in dist folder
 
 - open another terminal window and run the below command to start the node server
-
-`yarn dev`
-
+```
+        yarn dev
+```
 - browse to the url http://localhost:8000/ to view the application endpoints default message.
 
 ## API Documentation
