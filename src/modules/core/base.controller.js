@@ -7,8 +7,16 @@ import * as logger from '../../helpers/logger'
 export default class BaseController {
   static async addNewRecord(req, res, model) {
     try {
-      console.log('calling create controller')
-      const newRecord = await model.create(req.body)
+      logger.info('calling create controller')
+      logger.info(req.body)
+
+      const newModel = new model(req.body)
+
+      //set the details of the user who modified the record
+      newModel.createdBy = req.user._id
+      newModel.modifiedBy = req.user._id
+
+      const newRecord = await model.create(newModel)
       return res.status(HTTPStatus.CREATED).json(newRecord)
     } catch (e) {
       logger.error(e)
@@ -55,6 +63,9 @@ export default class BaseController {
       Object.keys(req.body).forEach(key => {
         modifiedRecord[key] = req.body[key]
       })
+
+      //set the details of the user who modified the record
+      modifiedRecord.modifiedBy = req.user._id
 
       return res.status(HTTPStatus.OK).json(await modifiedRecord.save())
     } catch (e) {
