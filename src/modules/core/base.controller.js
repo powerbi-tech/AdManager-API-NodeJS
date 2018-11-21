@@ -60,12 +60,26 @@ export default class BaseController {
     }
   }
 
-  static async deleteRecord(req, res, model) {
+  static async softDeleteRecord(req, res, model) {
+    try {
+      const deletedRecord = await model.findById(req.params.id)
+
+      deletedRecord.isActive =false;
+      deletedRecord.modifiedBy = req.user._id;
+
+      return res.status(HTTPStatus.OK).json(await modifiedRecord.save())
+    } catch (e) {
+      console.log(e)
+      return res.status(HTTPStatus.BAD_REQUEST).json(e)
+    }
+  }
+
+  static async hardDeleteRecord(req, res, model) {
     try {
       const deletedRecord = await model.findById(req.params.id)
 
       await deletedRecord.remove()
-      return res.sendStatus(HTTPStatus.OK)
+      return res.sendStatus(HTTPStatus.NO_CONTENT)
     } catch (e) {
       console.log(e)
       return res.status(HTTPStatus.BAD_REQUEST).json(e)
