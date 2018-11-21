@@ -13,12 +13,15 @@ export default class PublicationController extends BaseController {
   }
 
   static async getList(req, res) {
-    super.getList(req, res, Publication,'name')
+    super.getList(req, res, Publication, 'name')
   }
   static async updateRecord(req, res) {
     super.updateRecord(req, res, Publication)
   }
   static async deleteRecord(req, res) {
     super.deleteRecord(req, res, Publication)
+  }
+  static async bulkUpdateRecords(req, res) {
+    super.bulkUpdateRecords(req, res, Publication)
   }
 }

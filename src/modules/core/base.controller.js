@@ -1,6 +1,8 @@
 import HTTPStatus from 'http-status'
 import constants from '../../config/constants'
-import { connectableObservableDescriptor } from 'rxjs/internal/observable/ConnectableObservable';
+import async from 'async'
+import _ from 'lodash'
+import * as logger from '../../helpers/logger'
 
 export default class BaseController {
   static async addNewRecord(req, res, model) {
@@ -9,25 +11,25 @@ export default class BaseController {
       const newRecord = await model.create(req.body)
       return res.status(HTTPStatus.CREATED).json(newRecord)
     } catch (e) {
-      console.log('error:',e)
+      logger.error(e)
       return res.status(HTTPStatus.BAD_REQUEST).json(e)
     }
   }
 
   static async getById(req, res, model) {
     try {
+      const record = await model.findById(req.params.id)
 
-      const record =  await  model.findById(req.params.id)
-    
       return res.status(HTTPStatus.OK).json({
-        ...record.toJSON()
+        ...record.toJSON(),
       })
     } catch (e) {
+      logger.error(e)
       return res.status(HTTPStatus.BAD_REQUEST).json(e)
     }
   }
 
-  static async getList(req, res, model,selectFields='') {
+  static async getList(req, res, model, selectFields = '') {
     const limit = parseInt(req.query.limit, 0)
     const skip = parseInt(req.query.skip, 0)
 
@@ -36,7 +38,7 @@ export default class BaseController {
     }
 
     model
-      .find({},selectFields, (err, records) => {
+      .find({}, selectFields, (err, records) => {
         if (err) {
           res.status(HTTPStatus.BAD_REQUEST).json(err)
         }
@@ -56,6 +58,7 @@ export default class BaseController {
 
       return res.status(HTTPStatus.OK).json(await modifiedRecord.save())
     } catch (e) {
+      logger.error(e)
       return res.status(HTTPStatus.BAD_REQUEST).json(e)
     }
   }
@@ -64,12 +67,12 @@ export default class BaseController {
     try {
       const deletedRecord = await model.findById(req.params.id)
 
-      deletedRecord.isActive =false;
-      deletedRecord.modifiedBy = req.user._id;
+      deletedRecord.isActive = false
+      deletedRecord.modifiedBy = req.user._id
 
       return res.status(HTTPStatus.OK).json(await modifiedRecord.save())
     } catch (e) {
-      console.log(e)
+      logger.error(e)
       return res.status(HTTPStatus.BAD_REQUEST).json(e)
     }
   }
@@ -81,8 +84,46 @@ export default class BaseController {
       await deletedRecord.remove()
       return res.sendStatus(HTTPStatus.NO_CONTENT)
     } catch (e) {
-      console.log(e)
+      logger.error(e)
       return res.status(HTTPStatus.BAD_REQUEST).json(e)
     }
+  }
+
+  static async bulkUpdateRecords(req, res, model) {
+    let data = req.body
+    let notInsertedRecords = []
+    let insertedRecords = []
+
+    async.eachSeries(
+      data,
+      (element, elementCallback) => {
+        if (_.isUndefined(element._id)) {
+          element._id = new mongoose.mongo.ObjectID()
+        }
+        model.findOneAndUpdate(
+          { _id: element._id },
+          element,
+          { upsert: true, new: true },
+          (err, record) => {
+            if (err) {
+              logger.error(e)
+              notInsertedRecords.push({ record: element, err: err })
+            } else {
+              insertedRecords.push(record)
+            }
+            elementCallback()
+          }
+        )
+      },
+      err => {
+        if (err) {
+          logger.error(e)
+        }
+        res.json({
+          insertedRecords: insertedRecords,
+          notInsertedRecords: notInsertedRecords,
+        })
+      }
+    )
   }
 }
