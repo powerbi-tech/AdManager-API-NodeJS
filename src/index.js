@@ -5,8 +5,11 @@ import express from 'express'
 import constants from './config/constants'
 import middlewareConfig from './config/middlewares'
 import apiRoutes from './modules'
-import './config/database'
 import * as logger from './helpers/logger'
+
+// configurations
+import './config/database'
+import './config/utils'
 
 const app = express()
 const PORT = constants.PORT

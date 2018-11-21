@@ -1,6 +1,7 @@
 import mongoose, { Schema } from 'mongoose'
 import uniqueValidator from 'mongoose-unique-validator'
 import auditingSchema from '../core/base.model'
+import slug from 'slug'
 
 const PublicationSchema = new auditingSchema({
   // Schema Specific Fields
@@ -52,11 +53,17 @@ PublicationSchema.plugin(uniqueValidator, {
 })
 
 PublicationSchema.pre('validate', function(next) {
+  this._slugify()
+
   next()
 })
 
 PublicationSchema.methods = {
   /* Model Instance Methods come here */
+  _slugify() {
+    this.publicationType = slug(this.publicationType)
+    console.log('After Slugging:', this.publicationType)
+  },
 }
 
 PublicationSchema.statics = {

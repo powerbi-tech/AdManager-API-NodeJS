@@ -13,7 +13,12 @@ export default class PublicationController extends BaseController {
   }
 
   static async getList(req, res) {
-    super.getList(req, res, Publication, 'name')
+    super.getList(
+      req,
+      res,
+      Publication,
+      'publicationGroup publicationName publicationType languageType ratings'
+    )
   }
   static async updateRecord(req, res) {
     super.updateRecord(req, res, Publication)
