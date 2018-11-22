@@ -8,9 +8,11 @@ const ClientSchema = new auditingSchema({
     type: String,
     required: true,
   },
+  middleName: {
+    type: String,
+  },
   lastName: {
     type: String,
-    required: true,
   },
   mobileNumber: {
     type: String,
@@ -26,6 +28,7 @@ const ClientSchema = new auditingSchema({
         message: 'Mobile number should be of {ARGS[0]} digits',
       }),
     ],
+    required: true,
   },
   address: {
     type: String,
