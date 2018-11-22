@@ -2782,6 +2782,11 @@ is-windows@^1.0.0, is-windows@^1.0.2:
   resolved "https://registry.yarnpkg.com/is-windows/-/is-windows-1.0.2.tgz#d1850eb9791ecd18e6182ce12a30f396634bb19d"
   integrity sha512-eXK1UInq2bPmjyX6e3VHIzMLobc4J94i4AWn+Hpq3OU5KkrRC96OAcR3PRJ/pGu6m8TRnBHP9dkXQVsT/COVIA==
 
+is@^3.2.1:
+  version "3.2.1"
+  resolved "https://registry.yarnpkg.com/is/-/is-3.2.1.tgz#d0ac2ad55eb7b0bec926a5266f6c662aaa83dca5"
+  integrity sha1-0Kwq1V63sL7JJqUmb2xmKqqD3KU=
+
 isarray@1.0.0, isarray@^1.0.0, isarray@~1.0.0:
   version "1.0.0"
   resolved "https://registry.yarnpkg.com/isarray/-/isarray-1.0.0.tgz#bb935d48582cba168c06834957a54a3e07124f11"
@@ -3275,6 +3280,14 @@ mongoose-unique-validator@2.0.2:
   dependencies:
     lodash.foreach "^4.1.0"
     lodash.get "^4.0.2"
+
+mongoose-validator@2.1.0:
+  version "2.1.0"
+  resolved "https://registry.yarnpkg.com/mongoose-validator/-/mongoose-validator-2.1.0.tgz#7abb49e2d67cd6395f0b4b9592c75c55b1b77a62"
+  integrity sha512-o1oThcinMdYfuut8ld8iQv4TdEB8W6I/WIKB6lWGtHzHmxa/SRnmXg2FeLL2CO+b9vzRitVubrFTeMOr9bJ2cA==
+  dependencies:
+    is "^3.2.1"
+    validator "^10.4.0"
 
 mongoose@5.3.12:
   version "5.3.12"
@@ -4926,7 +4939,7 @@ v8-compile-cache@^2.0.2:
   resolved "https://registry.yarnpkg.com/v8-compile-cache/-/v8-compile-cache-2.0.2.tgz#a428b28bb26790734c4fc8bc9fa106fccebf6a6c"
   integrity sha512-1wFuMUIM16MDJRCrpbpuEPTUGmM5QMUg0cr3KFwra2XgOgFcPGDQHDh3CszSCD2Zewc/dh/pamNEW8CbfDebUw==
 
-validator@10.9.0:
+validator@10.9.0, validator@^10.4.0:
   version "10.9.0"
   resolved "https://registry.yarnpkg.com/validator/-/validator-10.9.0.tgz#d10c11673b5061fb7ccf4c1114412411b2bac2a8"
   integrity sha512-hZJcZSWz9poXBlAkjjcsNAdrZ6JbjD3kWlNjq/+vE7RLLS/+8PAj3qVVwrwsOz/WL8jPmZ1hYkRvtlUeZAm4ug==

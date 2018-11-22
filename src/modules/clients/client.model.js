@@ -1,6 +1,7 @@
 import mongoose, { Schema } from 'mongoose'
 import auditingSchema from '../core/base.model'
 import slug from 'slug'
+import validator from 'mongoose-validator'
 
 const ClientSchema = new auditingSchema({
   firstName: {
@@ -13,6 +14,18 @@ const ClientSchema = new auditingSchema({
   },
   mobileNumber: {
     type: String,
+    trim: true,
+    validate: [
+      validator({
+        validator: 'isNumeric',
+        message: 'Please add valid mobile number',
+      }),
+      validator({
+        validator: 'isLength',
+        arguments: [10, 10],
+        message: 'Mobile number should be of {ARGS[0]} digits',
+      }),
+    ],
   },
   address: {
     type: String,
