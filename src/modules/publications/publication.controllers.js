@@ -20,6 +20,11 @@ export default class PublicationController extends BaseController {
       'publicationGroup publicationName publicationType languageType ratings'
     )
   }
+
+  static async paginateRecords(req, res) {
+    super.getListWithParams(req, res, Publication)
+  }
+
   static async updateRecord(req, res) {
     super.updateRecord(req, res, Publication)
   }

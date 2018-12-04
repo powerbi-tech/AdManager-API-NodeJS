@@ -76,9 +76,13 @@ UserSchema.methods = {
     return jwt.sign(
       {
         _id: this._id,
-        email:this.email
+        email: this.email,
       },
-      constants.JWT_SECRET
+      constants.JWT_SECRET,
+      {
+        // DAYS * 24hrs * 60 Min * 60 Sec
+        expiresIn: constants.TOKEN_VALIDITY * 24 * 60 * 60,
+      }
     )
   },
   toAuthJSON() {

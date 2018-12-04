@@ -1,7 +1,9 @@
 import mongoose, { Schema } from 'mongoose'
 import uniqueValidator from 'mongoose-unique-validator'
-import auditingSchema from '../core/base.model'
 import slug from 'slug'
+import mongoosePaginate from 'mongoose-paginate'
+
+import auditingSchema from '../core/base.model'
 
 const PublicationSchema = new auditingSchema({
   // Schema Specific Fields
@@ -48,26 +50,28 @@ const PublicationSchema = new auditingSchema({
   },
 })
 
-PublicationSchema.plugin(uniqueValidator, {
-  message: 'Publication with name : "{VALUE}" already exists in system',
-})
+// PublicationSchema.plugin(uniqueValidator, {
+//   message: 'Publication with name : "{VALUE}" already exists in system',
+// })
 
-PublicationSchema.pre('validate', function(next) {
-  this._slugify()
+PublicationSchema.plugin(mongoosePaginate)
 
-  next()
-})
+// PublicationSchema.pre('validate', function(next) {
+//   this._slugify()
 
-PublicationSchema.methods = {
-  /* Model Instance Methods come here */
-  _slugify() {
-    this.publicationType = slug(this.publicationType)
-    console.log('After Slugging:', this.publicationType)
-  },
-}
+//   next()
+// })
 
-PublicationSchema.statics = {
-  /* Model Methods come here */
-}
+// PublicationSchema.methods = {
+//   /* Model Instance Methods come here */
+//   _slugify() {
+//     this.publicationType = slug(this.publicationType)
+//     console.log('After Slugging:', this.publicationType)
+//   },
+// }
+
+// PublicationSchema.statics = {
+//   /* Model Methods come here */
+// }
 
 export default mongoose.model('Publication', PublicationSchema)

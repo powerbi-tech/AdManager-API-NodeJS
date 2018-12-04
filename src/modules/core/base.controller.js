@@ -56,6 +56,30 @@ export default class BaseController {
       .skip(skip)
   }
 
+  static async getListWithParams(req, res, model) {
+    const params = req.body
+    const topVal = params.top,
+      skipVal = params.skip,
+      top = isNaN(topVal) ? 10 : +topVal,
+      skip = isNaN(skipVal) ? 0 : +skipVal
+
+    var options = {
+      select: params.select,
+      sort: params.sort, //TODO: Find how to fix this
+      populate: params.populate,
+      lean: true,
+      offset: skip,
+      limit: top,
+    }
+
+    model.paginate({}, options).then(function(err, result) {
+      if (err) {
+        res.send(err)
+      }
+      res.json(result)
+    })
+  }
+
   static async updateRecord(req, res, model) {
     try {
       const modifiedRecord = await model.findById(req.params.id)
