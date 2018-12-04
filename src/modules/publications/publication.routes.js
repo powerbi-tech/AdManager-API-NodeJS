@@ -20,6 +20,6 @@ routes.patch('/:id', authJwt, Controller.updateRecord)
 routes.delete('/:id', authJwt, Controller.softDeleteRecord)
 
 /* Bulk Create Records */
-routes.post('/bulk', authJwt, Controller.addNewRecord)
+routes.post('/bulk', authJwt, Controller.bulkUpdateRecords)
 
 export default routes

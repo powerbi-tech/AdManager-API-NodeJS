@@ -2,6 +2,7 @@ import HTTPStatus from 'http-status'
 import constants from '../../config/constants'
 import async from 'async'
 import _ from 'lodash'
+import mongoose from 'mongoose'
 import * as logger from '../../helpers/logger'
 
 export default class BaseController {
@@ -128,7 +129,7 @@ export default class BaseController {
     let data = req.body
     let notInsertedRecords = []
     let insertedRecords = []
-
+    console.log('Inside bulk update records')
     async.eachSeries(
       data,
       (element, elementCallback) => {
@@ -152,6 +153,7 @@ export default class BaseController {
       },
       err => {
         if (err) {
+          console.log(e)
           logger.error(e)
         }
         res.json({
