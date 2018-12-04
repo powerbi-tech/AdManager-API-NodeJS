@@ -12,7 +12,7 @@ routes.post('/', authJwt, Controller.addNewRecord)
 routes.get('/', authJwt, Controller.getList)
 
 /* Get Records */
-routes.post('/page', authJwt, Controller.paginateRecords)
+routes.post('/page', Controller.paginateRecords)
 
 /* Get/Edit/Delete individual record */
 routes.get('/:id', authJwt, Controller.getById)
