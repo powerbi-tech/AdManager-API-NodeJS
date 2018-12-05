@@ -64,15 +64,23 @@ export default class BaseController {
       top = isNaN(topVal) ? 10 : +topVal,
       skip = isNaN(skipVal) ? 0 : +skipVal
 
+    console.log('Creating Options object')
+    console.log(params)
     var options = {
       select: params.select,
-      sort: params.sort, //TODO: Find how to fix this
+      sort: {},
       populate: params.populate,
       lean: true,
       offset: skip,
       limit: top,
     }
+    // if Sort Paramter is provided
+    if (params.sortBy) {
+      options.sort[params.sortBy] =
+        params.sortOrder.toLowerCase() === 'asc' ? '1' : '-1'
+    }
 
+    console.log(options)
     model.paginate({}, options).then(function(err, result) {
       if (err) {
         res.send(err)
