@@ -4,6 +4,7 @@ import compression from 'compression'
 import helmet from 'helmet'
 import passport from 'passport'
 import cors from 'cors'
+import mongoose from 'mongoose'
 
 const isDev = process.env.NODE_ENV === 'development'
 const isProd = process.env.NODE_ENV === 'production'
@@ -23,7 +24,7 @@ export default app => {
     //logs all the requests to the console
     app.use(morgan('short'))
 
-    // Enable MongoDb Debuging
+    // Enable MongoDb Debugging
     mongoose.set('debug', true)
   }
 }
