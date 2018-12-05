@@ -20,6 +20,10 @@ export default app => {
   app.use(passport.initialize())
 
   if (isDev) {
-    app.use(morgan('dev'))
+    //logs all the requests to the console
+    app.use(morgan('short'))
+
+    // Enable MongoDb Debuging
+    mongoose.set('debug', true)
   }
 }
