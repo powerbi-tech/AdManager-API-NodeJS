@@ -1,11 +1,11 @@
-import userRoutes from './users/user.routes'
-import { authJwt } from '../services/auth.services'
-import publicationRoutes from './publications/publication.routes'
 import classifiedHeaderCaptionRoutes from './classifieds/classifiedHeaderCaptions/classifiedHeaderCaptions.routes'
 import classifiedRatesRoutes from './classifieds/ClassifiedRates/ClassifiedRate.routes'
 import clientRoutes from './clients/client.routes'
 import postRoutes from './posts/post.routes'
+import publicationRoutes from './publications/publication.routes'
+import userRoutes from './users/user.routes'
 
+/* URL Constants */
 const BASE_URL = '/api/v1'
 const CLASSIFIED = `${BASE_URL}/classifieds`
 
