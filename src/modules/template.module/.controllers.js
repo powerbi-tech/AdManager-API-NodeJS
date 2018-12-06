@@ -1,7 +1,7 @@
-import Model from './.model'
+import Model from './temp.model'
 import BaseController from '../core/base.controller'
 
-export default class Controller extends BaseController {
+export default class tempController extends BaseController {
   static async addNewRecord(req, res) {
     console.log(req.body)
     super.addNewRecord(req, res, Model)
@@ -14,6 +14,10 @@ export default class Controller extends BaseController {
   static async getList(req, res) {
     super.getList(req, res, Model, '')
   }
+  static async getListWithParams(req, res) {
+    super.getListWithParams(req, res, Model)
+  }
+
   static async updateRecord(req, res) {
     super.updateRecord(req, res, Model)
   }

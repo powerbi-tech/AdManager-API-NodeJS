@@ -19,8 +19,11 @@ tempSchema.methods = {
   },
 }
 
-tempSchema.statics = {
-  /* Model Methods come here */
-}
+// tempSchema.statics = {
+//   /* Model Methods come here */
+// }
+
+/* Plug-ins */
+tempSchema.plugin(mongoosePaginate)
 
 export default mongoose.model('temp', tempSchema)

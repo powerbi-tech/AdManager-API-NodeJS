@@ -1,6 +1,6 @@
 import { Router } from 'express'
 
-import Controller from './client.controllers'
+import Controller from './.controllers'
 import { authJwt } from '../../services/auth.services'
 
 const routes = new Router()
@@ -10,6 +10,9 @@ routes.post('/', authJwt, Controller.addNewRecord)
 
 /* Get Records */
 routes.get('/', authJwt, Controller.getList)
+
+/* Get Paged Records */
+routes.post('/page', authJwt, Controller.getListWithParams)
 
 /* Get/Edit/Delete individual record */
 routes.get('/:id', authJwt, Controller.getById)
