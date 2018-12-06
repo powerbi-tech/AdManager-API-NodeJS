@@ -50,12 +50,6 @@ const PublicationSchema = new auditingSchema({
   },
 })
 
-PublicationSchema.plugin(uniqueValidator, {
-  message: 'Publication with name : "{VALUE}" already exists in system',
-})
-
-PublicationSchema.plugin(mongoosePaginate)
-
 PublicationSchema.pre('validate', function(next) {
   this._slugify()
 
@@ -73,5 +67,12 @@ PublicationSchema.methods = {
 // PublicationSchema.statics = {
 //   /* Model Methods come here */
 // }
+
+/* Plug-ins */
+PublicationSchema.plugin(mongoosePaginate)
+
+PublicationSchema.plugin(uniqueValidator, {
+  message: 'Publication with name : "{VALUE}" already exists in system',
+})
 
 export default mongoose.model('Publication', PublicationSchema)

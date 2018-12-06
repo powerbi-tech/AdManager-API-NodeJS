@@ -14,6 +14,9 @@ export default class CodeController extends BaseController {
   static async getList(req, res) {
     super.getList(req, res, Model, '')
   }
+  static async getListWithParams(req, res) {
+    super.getListWithParams(req, res, Publication)
+  }
   static async updateRecord(req, res) {
     super.updateRecord(req, res, Model)
   }

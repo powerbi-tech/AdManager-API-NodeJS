@@ -21,7 +21,7 @@ export default class PublicationController extends BaseController {
     )
   }
 
-  static async paginateRecords(req, res) {
+  static async getListWithParams(req, res) {
     super.getListWithParams(req, res, Publication)
   }
 

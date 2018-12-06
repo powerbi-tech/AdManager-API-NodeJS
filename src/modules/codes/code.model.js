@@ -2,6 +2,7 @@ import mongoose, { Schema } from 'mongoose'
 import auditingSchema from '../core/base.model'
 import slug from 'slug'
 import validator from 'mongoose-validator'
+import mongoosePaginate from 'mongoose-paginate'
 
 const CodeSchema = new auditingSchema({
   codeIdentifier: {
@@ -31,8 +32,11 @@ CodeSchema.methods = {
   },
 }
 
-CodeSchema.statics = {
-  /* Model Methods come here */
-}
+// CodeSchema.statics = {
+//   /* Model Methods come here */
+// }
+
+/* Plug-ins */
+ClientSchema.plugin(mongoosePaginate)
 
 export default mongoose.model('Code', CodeSchema)

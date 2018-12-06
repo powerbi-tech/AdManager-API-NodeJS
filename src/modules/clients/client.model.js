@@ -2,6 +2,7 @@ import mongoose, { Schema } from 'mongoose'
 import auditingSchema from '../core/base.model'
 import slug from 'slug'
 import validator from 'mongoose-validator'
+import mongoosePaginate from 'mongoose-paginate'
 
 const ClientSchema = new auditingSchema({
   firstName: {
@@ -54,8 +55,11 @@ ClientSchema.methods = {
   },
 }
 
-ClientSchema.statics = {
-  /* Model Methods come here */
-}
+// ClientSchema.statics = {
+//   /* Model Methods come here */
+// }
+
+/* Plug-ins */
+ClientSchema.plugin(mongoosePaginate)
 
 export default mongoose.model('Client', ClientSchema)
