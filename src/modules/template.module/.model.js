@@ -1,17 +1,17 @@
 import mongoose, { Schema } from 'mongoose'
 import auditingSchema from '../core/base.model'
 
-const tempSchema = new auditingSchema({})
+const ModelSchema = new auditingSchema({})
 
-tempSchema.pre('validate', function(next) {
+ModelSchema.pre('validate', function(next) {
   next()
 })
 
-tempSchema.methods = {
+ModelSchema.methods = {
   /* Model Instance Methods come here */
 }
 
 /* Plug-ins */
-tempSchema.plugin(mongoosePaginate)
+ModelSchema.plugin(mongoosePaginate)
 
-export default mongoose.model('temp', tempSchema)
+export default mongoose.model('temp', ModelSchema)
