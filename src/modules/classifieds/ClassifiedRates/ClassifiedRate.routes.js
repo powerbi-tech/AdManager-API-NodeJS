@@ -1,7 +1,7 @@
 import { Router } from 'express'
 
-import Controller from './client.controllers'
-import { authJwt } from '../../services/auth.services'
+import Controller from './classifiedRate.controllers'
+import { authJwt } from '../../../services/auth.services'
 
 const routes = new Router()
 

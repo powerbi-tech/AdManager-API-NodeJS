@@ -1,7 +1,7 @@
-import Model from './client.model'
-import BaseController from '../core/base.controller'
+import Model from './c'
+import BaseController from '../../core/base.controller'
 
-export default class ClientController extends BaseController {
+export default class ClassifiedRatesController extends BaseController {
   static async addNewRecord(req, res) {
     console.log(req.body)
     super.addNewRecord(req, res, Model)

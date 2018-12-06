@@ -3,13 +3,13 @@ import auditingSchema from '../../core/base.model'
 import mongoosePaginate from 'mongoose-paginate'
 
 const ClassifiedHeaderCaptionSchema = new auditingSchema({
-  classifiedCaption: {
-    type: String,
-    required: true,
-  },
   publicationId: {
     type: Schema.ObjectId,
     ref: 'Publication',
+    required: true,
+  },
+  classifiedCaption: {
+    type: String,
     required: true,
   },
 })
