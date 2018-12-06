@@ -1,5 +1,5 @@
 import mongoose, { Schema } from 'mongoose'
-import auditingSchema from '../core/base.model'
+import auditingSchema from '../../core/base.model'
 import mongoosePaginate from 'mongoose-paginate'
 
 const ClassifiedHeaderCaptionSchema = new auditingSchema({
@@ -26,10 +26,6 @@ ClientSchema.methods = {
     this.classifiedCaption = this.classifiedCaption.toUpperCase()
   },
 }
-
-// ClientSchema.statics = {
-//   /* Model Methods come here */
-// }
 
 /* Plug-ins */
 ClassifiedHeaderCaptionSchema.plugin(mongoosePaginate)

@@ -1,5 +1,5 @@
 import Model from './classifiedHeaderCaptions.model'
-import BaseController from '../core/base.controller'
+import BaseController from '../../core/base.controller'
 
 export default class ClientController extends BaseController {
   static async addNewRecord(req, res) {
