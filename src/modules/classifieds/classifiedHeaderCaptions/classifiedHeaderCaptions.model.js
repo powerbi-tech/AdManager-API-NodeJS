@@ -14,13 +14,13 @@ const ClassifiedHeaderCaptionSchema = new auditingSchema({
   },
 })
 
-ClientSchema.pre('validate', function(next) {
+ClassifiedHeaderCaptionSchema.pre('validate', function(next) {
   this._standardize()
 
   next()
 })
 
-ClientSchema.methods = {
+ClassifiedHeaderCaptionSchema.methods = {
   /* Model Instance Methods come here */
   _standardize() {
     this.classifiedCaption = this.classifiedCaption.toUpperCase()
