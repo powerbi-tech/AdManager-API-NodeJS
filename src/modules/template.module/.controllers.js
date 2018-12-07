@@ -3,7 +3,6 @@ import BaseController from '../core/base.controller'
 
 export default class tempController extends BaseController {
   static async addNewRecord(req, res) {
-    console.log(req.body)
     super.addNewRecord(req, res, Model)
   }
 
