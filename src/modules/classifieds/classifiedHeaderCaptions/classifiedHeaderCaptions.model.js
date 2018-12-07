@@ -23,7 +23,7 @@ ClassifiedHeaderCaptionSchema.pre('validate', function(next) {
 ClassifiedHeaderCaptionSchema.methods = {
   /* Model Instance Methods come here */
   _standardize() {
-    this.classifiedCaption = this.classifiedCaption.toUpperCase()
+    this.classifiedCaption = this.classifiedCaption.toUpperCase().trim()
   },
 }
 

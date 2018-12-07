@@ -52,6 +52,7 @@ const PublicationSchema = new auditingSchema({
 
 PublicationSchema.pre('validate', function(next) {
   this._slugify()
+  this._standardize()
 
   next()
 })
@@ -61,6 +62,9 @@ PublicationSchema.methods = {
   _slugify() {
     this.publicationType = slug(this.publicationType)
     console.log('After Slugging:', this.publicationType)
+  },
+  _standardize() {
+    this.publicationName = this.publicationName.trim()
   },
 }
 
