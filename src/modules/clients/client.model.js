@@ -21,7 +21,7 @@ const ClientSchema = new auditingSchema({
     validate: [
       validator({
         validator: 'isNumeric',
-        message: 'Please add valid mobile number',
+        message: 'Please add valid mobile number.',
       }),
       validator({
         validator: 'isLength',
