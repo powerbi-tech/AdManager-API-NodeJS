@@ -1,7 +1,7 @@
-import Model from './temp.model'
-import BaseController from '../core/base.controller'
+import Model from './classifiedRate.model'
+import BaseController from '../../core/base.controller'
 
-export default class tempController extends BaseController {
+export default class ClassifiedRatesController extends BaseController {
   static async addNewRecord(req, res) {
     super.addNewRecord(req, res, Model)
   }

@@ -1,35 +1,31 @@
 import mongoose, { Schema } from 'mongoose'
-import auditingSchema from '../core/base.model'
+import auditingSchema from '../../core/base.model'
 import mongoosePaginate from 'mongoose-paginate'
 
 const ClassifiedHeaderCaptionSchema = new auditingSchema({
-  classifiedCaption: {
-    type: String,
-    required: true,
-  },
   publicationId: {
     type: Schema.ObjectId,
     ref: 'Publication',
     required: true,
   },
+  classifiedCaption: {
+    type: String,
+    required: true,
+  },
 })
 
-ClientSchema.pre('validate', function(next) {
+ClassifiedHeaderCaptionSchema.pre('validate', function(next) {
   this._standardize()
 
   next()
 })
 
-ClientSchema.methods = {
+ClassifiedHeaderCaptionSchema.methods = {
   /* Model Instance Methods come here */
   _standardize() {
-    this.classifiedCaption = this.classifiedCaption.toUpperCase()
+    this.classifiedCaption = this.classifiedCaption.toUpperCase().trim()
   },
 }
-
-// ClientSchema.statics = {
-//   /* Model Methods come here */
-// }
 
 /* Plug-ins */
 ClassifiedHeaderCaptionSchema.plugin(mongoosePaginate)

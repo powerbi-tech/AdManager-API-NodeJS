@@ -1,26 +1,17 @@
 import mongoose, { Schema } from 'mongoose'
 import auditingSchema from '../core/base.model'
-import slug from 'slug'
-import validator from 'mongoose-validator'
 
-const tempSchema = new auditingSchema({})
+const ModelSchema = new auditingSchema({})
 
-tempSchema.pre('validate', function(next) {
-  this._slugify()
-
+ModelSchema.pre('validate', function(next) {
   next()
 })
 
-tempSchema.methods = {
+ModelSchema.methods = {
   /* Model Instance Methods come here */
-  _slugify() {
-    this.clientType = slug(this.clientType)
-    console.log('After Slugging:', this.clientType)
-  },
 }
 
-tempSchema.statics = {
-  /* Model Methods come here */
-}
+/* Plug-ins */
+ModelSchema.plugin(mongoosePaginate)
 
-export default mongoose.model('temp', tempSchema)
+export default mongoose.model('temp', ModelSchema)
