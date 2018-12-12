@@ -15,6 +15,9 @@ const ClientSchema = new auditingSchema({
   lastName: {
     type: String,
   },
+  email: {
+    type: String,
+  },
   mobileNumber: {
     type: String,
     trim: true,
