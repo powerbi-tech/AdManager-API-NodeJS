@@ -8,6 +8,17 @@ const ClassifiedRateSchema = new auditingSchema({
     ref: 'Publication',
     required: true,
   },
+  releaseOrderNumber: {
+    type: String,
+    required: true,
+    unique: true,
+  },
+  specialInstructions: {
+    type: String,
+  },
+  dateOfCreation: {
+    type: Date,
+  },
 })
 
 ClassifiedRateSchema.pre('validate', function(next) {
