@@ -2,7 +2,7 @@ import mongoose, { Schema } from 'mongoose'
 import auditingSchema from '../../core/base.model'
 import mongoosePaginate from 'mongoose-paginate'
 
-const ClassifiedRateSchema = new auditingSchema({
+const ClassifiedSchemeSchema = new auditingSchema({
   publicationId: {
     type: Schema.ObjectId,
     ref: 'Publication',
@@ -35,15 +35,15 @@ const ClassifiedRateSchema = new auditingSchema({
   },
 })
 
-ClassifiedRateSchema.pre('validate', function(next) {
+ClassifiedSchemeSchema.pre('validate', function(next) {
   next()
 })
 
-ClassifiedRateSchema.methods = {
+ClassifiedSchemeSchema.methods = {
   /* Model Instance Methods come here */
 }
 
 /* Plug-ins */
-ClassifiedRateSchema.plugin(mongoosePaginate)
+ClassifiedSchemeSchema.plugin(mongoosePaginate)
 
-export default mongoose.model('ClassifiedRate', ClassifiedRateSchema)
+export default mongoose.model('ClassifiedScheme', ClassifiedSchemeSchema)
