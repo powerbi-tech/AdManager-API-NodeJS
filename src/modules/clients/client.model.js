@@ -15,13 +15,16 @@ const ClientSchema = new auditingSchema({
   lastName: {
     type: String,
   },
+  email: {
+    type: String,
+  },
   mobileNumber: {
     type: String,
     trim: true,
     validate: [
       validator({
         validator: 'isNumeric',
-        message: 'Please add valid mobile number',
+        message: 'Please add valid mobile number.',
       }),
       validator({
         validator: 'isLength',

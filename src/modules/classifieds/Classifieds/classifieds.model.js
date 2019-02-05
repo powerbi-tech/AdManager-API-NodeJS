@@ -2,23 +2,68 @@ import mongoose, { Schema } from 'mongoose'
 import auditingSchema from '../../core/base.model'
 import mongoosePaginate from 'mongoose-paginate'
 
-const ClassifiedRateSchema = new auditingSchema({
+const ClassifiedInsertionSchema = new Schema({
+  dateOfInsertion: {
+    type: Date,
+  },
+  classifiedType: {
+    type: String,
+    enum: ['Paid', 'Free'],
+    required: true,
+  },
+})
+
+const ClassifiedSchema = new auditingSchema({
+  ClassifiedReleaseOrderId: {
+    type: Schema.ObjectId,
+    ref: 'ClassifiedReleaseOrder',
+    required: true,
+  },
   publicationId: {
     type: Schema.ObjectId,
     ref: 'Publication',
     required: true,
   },
+  clientId: {
+    type: Schema.ObjectId,
+    ref: 'Client',
+    required: true,
+  },
+  classifiedInsertions: [ClassifiedInsertionSchema],
+  serialNumber: {
+    type: Number,
+    required: true,
+  },
+  selectedScheme: {},
+  selectedRate: {},
+  classifiedDetails: {
+    caption: { type: String },
+    text: { type: String },
+    memo: { type: String },
+  },
+  paymentDetails: {
+    modeOfPayment: {
+      type: String,
+      enum: ['Cash', 'Credit', 'Cheque', 'Part_Payment', 'Advance_Payment'],
+    },
+    ChequeNumber: {
+      type: String,
+    },
+    BillNumber: {
+      type: String,
+    },
+  },
 })
 
-ClassifiedRateSchema.pre('validate', function(next) {
+ClassifiedSchema.pre('validate', function(next) {
   next()
 })
 
-ClassifiedRateSchema.methods = {
+ClassifiedSchema.methods = {
   /* Model Instance Methods come here */
 }
 
 /* Plug-ins */
-ClassifiedRateSchema.plugin(mongoosePaginate)
+ClassifiedSchema.plugin(mongoosePaginate)
 
-export default mongoose.model('ClassifiedRate', ClassifiedRateSchema)
+export default mongoose.model('Classified', ClassifiedSchema)
