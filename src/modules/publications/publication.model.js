@@ -1,4 +1,6 @@
-import mongoose, { Schema } from 'mongoose'
+import mongoose, {
+  Schema
+} from 'mongoose'
 import uniqueValidator from 'mongoose-unique-validator'
 import slug from 'slug'
 import mongoosePaginate from 'mongoose-paginate'
@@ -12,7 +14,7 @@ const PublicationSchema = new auditingSchema({
   },
   publicationName: {
     type: String,
-    required: 'Please provide Publication Name',
+    required: 'Please provide Publication Name.',
     unique: true,
   },
   publicationType: {
@@ -35,22 +37,18 @@ const PublicationSchema = new auditingSchema({
   //Classifieds Data
   classifieds: {
     commissionRate: Number,
-    schemes: [
-      {
-        type: Schema.ObjectId,
-        ref: 'ClassifiedScheme',
-      },
-    ],
-    rates: [
-      {
-        type: Schema.ObjectId,
-        ref: 'ClassifiedRate',
-      },
-    ],
+    schemes: [{
+      type: Schema.ObjectId,
+      ref: 'ClassifiedScheme',
+    }, ],
+    rates: [{
+      type: Schema.ObjectId,
+      ref: 'ClassifiedRate',
+    }, ],
   },
 })
 
-PublicationSchema.pre('validate', function(next) {
+PublicationSchema.pre('validate', function (next) {
   this._slugify()
   this._standardize()
 
