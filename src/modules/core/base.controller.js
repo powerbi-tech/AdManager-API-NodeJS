@@ -45,9 +45,12 @@ export default class BaseController {
     if (limit === 0) {
       limit = constants.DEFAULT_PAGE_SIZE
     }
+    const query = {
+      isActive: true
+    }
 
     model
-      .find({}, selectFields, (err, records) => {
+      .find(query, selectFields, (err, records) => {
         if (err) {
           res.status(HTTPStatus.BAD_REQUEST).json(err)
         }
@@ -59,10 +62,12 @@ export default class BaseController {
 
   static async getListWithParams(req, res, model) {
     const params = req.body
+    let query = {}
     const topVal = params.top,
       skipVal = params.skip,
       top = isNaN(topVal) ? 10 : +topVal,
-      skip = isNaN(skipVal) ? 0 : +skipVal
+      skip = isNaN(skipVal) ? 0 : +skipVal,
+      filter = params.filter
 
     console.log('Creating Options object')
     console.log(params)
@@ -74,14 +79,25 @@ export default class BaseController {
       offset: skip,
       limit: top,
     }
-    // if Sort Paramter is provided
+    // if Sort Parameter is provided
     if (params.sortBy) {
       options.sort[params.sortBy] =
         params.sortOrder.toLowerCase() === 'asc' ? '1' : '-1'
     }
 
+    console.log(filter)
+    //if filter is not set then by default return only active records
+    if (filter == null) {
+      query = {
+        isActive: true
+      }
+    } else
+      query = JSON.parse(filter)
+
+    console.log(query)
+
     console.log(options)
-    model.paginate({}, options).then(function(err, result) {
+    model.paginate(query, options).then(function (err, result) {
       if (err) {
         res.send(err)
       }
@@ -109,12 +125,14 @@ export default class BaseController {
 
   static async softDeleteRecord(req, res, model) {
     try {
+      logger.info('Soft Delete Function')
       const deletedRecord = await model.findById(req.params.id)
 
       deletedRecord.isActive = false
       deletedRecord.modifiedBy = req.user._id
+      await deletedRecord.save()
 
-      return res.status(HTTPStatus.OK).json(await modifiedRecord.save())
+      return res.sendStatus(HTTPStatus.NO_CONTENT)
     } catch (e) {
       logger.error(e)
       return res.status(HTTPStatus.BAD_REQUEST).json(e)
@@ -144,14 +162,20 @@ export default class BaseController {
         if (_.isUndefined(element._id)) {
           element._id = new mongoose.mongo.ObjectID()
         }
-        model.findOneAndUpdate(
-          { _id: element._id },
-          element,
-          { upsert: true, new: true },
+        model.findOneAndUpdate({
+            _id: element._id
+          },
+          element, {
+            upsert: true,
+            new: true
+          },
           (err, record) => {
             if (err) {
               logger.error(e)
-              notInsertedRecords.push({ record: element, err: err })
+              notInsertedRecords.push({
+                record: element,
+                err: err
+              })
             } else {
               insertedRecords.push(record)
             }
