@@ -59,3 +59,8 @@ touch.prettierrc
 yarn add -D  eslint eslint-config-strongloop prettier
 
 ```
+
+### ToDo
+- Add github hooks to adhere messages
+- define gitflow stratergy
+
